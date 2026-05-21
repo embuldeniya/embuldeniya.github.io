@@ -1297,6 +1297,130 @@
       text-align: center;
     }
 
+    /* ── VIDEO SHOWCASE ── */
+    .video-showcase {
+      margin-top: 64px;
+      position: relative;
+    }
+
+    .video-showcase-label {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .video-showcase-label span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--sky-deep);
+      background: var(--sky-pale);
+      border: 1px solid var(--border);
+      padding: 6px 16px;
+      border-radius: 24px;
+    }
+
+    .video-showcase-label span svg {
+      width: 14px;
+      height: 14px;
+      stroke: var(--sky-deep);
+      fill: none;
+    }
+
+    .video-container {
+      position: relative;
+      max-width: 880px;
+      margin: 0 auto;
+      border-radius: 20px;
+      overflow: hidden;
+      background: var(--ink);
+      box-shadow:
+        0 0 0 1px rgba(14, 165, 233, 0.15),
+        0 8px 40px rgba(0, 0, 0, 0.12),
+        0 0 80px rgba(14, 165, 233, 0.06);
+      animation: fadeUp 0.8s 0.3s ease both;
+    }
+
+    .video-container::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: 21px;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(14, 165, 233, 0.3), rgba(3, 105, 161, 0.1), rgba(14, 165, 233, 0.2));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .video-container video {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 20px;
+    }
+
+    .video-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(10, 15, 20, 0.4);
+      backdrop-filter: blur(2px);
+      cursor: pointer;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+      z-index: 1;
+      border-radius: 20px;
+    }
+
+    .video-overlay.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .play-button {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(12px);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .play-button:hover {
+      transform: scale(1.1);
+      background: rgba(14, 165, 233, 0.35);
+      border-color: rgba(14, 165, 233, 0.6);
+      box-shadow: 0 0 40px rgba(14, 165, 233, 0.3);
+    }
+
+    .play-button svg {
+      width: 32px;
+      height: 32px;
+      fill: white;
+      margin-left: 4px;
+    }
+
+    .video-caption {
+      text-align: center;
+      margin-top: 16px;
+      font-size: 13px;
+      color: var(--ink-3);
+      font-weight: 300;
+    }
+
     @media (max-width: 900px) {
       nav {
         padding: 0 24px;
@@ -1367,6 +1491,32 @@
 
       .disclaimer-band {
         padding: 10px 24px;
+      }
+
+      .video-container {
+        border-radius: 14px;
+      }
+
+      .video-container::before {
+        border-radius: 15px;
+      }
+
+      .video-container video {
+        border-radius: 14px;
+      }
+
+      .video-overlay {
+        border-radius: 14px;
+      }
+
+      .play-button {
+        width: 60px;
+        height: 60px;
+      }
+
+      .play-button svg {
+        width: 24px;
+        height: 24px;
       }
     }
   </style>
@@ -1703,12 +1853,55 @@
             </svg>
           </div>
           <div class="step-title">Review &amp; save</div>
-          <div class="step-desc">The doctor reviews, edits, and approves the summary, and then saves, prints, or refers.
+          <div class="step-desc">          The doctor reviews, edits, and approves the summary, and then saves, prints, or refers.
           </div>
         </div>
       </div>
+
+      <!-- Video Showcase -->
+      <div class="video-showcase">
+        <div class="video-showcase-label">
+          <span>
+            <svg viewBox="0 0 24 24" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            Promo
+          </span>
+        </div>
+        <div class="video-container" id="video-container">
+          <div class="video-overlay" id="video-overlay" onclick="playVideo()">
+            <div class="play-button">
+              <svg viewBox="0 0 24 24"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+            </div>
+          </div>
+          <video id="demo-video" preload="metadata" controls controlsList="nodownload" playsinline>
+            <source src="mp_.mp4" type="video/mp4">
+            Your browser does not support the video element.
+          </video>
+        </div>
+        <div class="video-caption">A walkthrough of the full Nestor.AI consultation workflow — from recording to structured clinical summary.</div>
+      </div>
     </div>
   </section>
+
+  <script>
+    function playVideo() {
+      const video = document.getElementById('demo-video');
+      const overlay = document.getElementById('video-overlay');
+      overlay.classList.add('hidden');
+      video.play();
+    }
+
+    // Show overlay again when video ends
+    document.getElementById('demo-video').addEventListener('ended', function() {
+      document.getElementById('video-overlay').classList.remove('hidden');
+    });
+
+    // Show overlay when video is paused (only if not scrubbing)
+    document.getElementById('demo-video').addEventListener('pause', function() {
+      if (this.currentTime === 0 || this.ended) {
+        document.getElementById('video-overlay').classList.remove('hidden');
+      }
+    });
+  </script>
 
   <!-- LANGUAGES -->
   <section id="languages">
