@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://embuldeniya.github.io/sitemap.xml
+Sitemap: https://aurora.embuldeniya.com/sitemap.xml
