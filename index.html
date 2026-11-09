@@ -1,2126 +1,872 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nestor.AI — AI Physician Assistant for Sri Lanka</title>
-  <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="apple-touch-icon" href="favicon.png">
+  <title>Aurora Labs — Clinical AI for Multilingual South Asian Healthcare</title>
+  <meta name="description" content="Aurora Labs is a physician-led Sri Lankan health AI company. Its flagship Nestor.AI is a trilingual (Sinhala, Tamil, English) ambient medical scribe that cuts clinical documentation time by 65%.">
+  <meta name="keywords" content="Aurora Labs, Nestor.AI, HealthTech, Sri Lanka Startup, Medical Scribe, Nestor EMR, CareGo, Patient Bot, Sri Lanka Market Intelligence, Real Estate Analytics, Vehicle Analytics">
+  <meta name="author" content="Aurora Labs (PVT) LTD">
+  <meta name="theme-color" content="#070a12">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://embuldeniya.github.io/">
+
+  <!-- Favicon & Brand Icons -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/images/logo-icon-192.png">
+  <link rel="apple-touch-icon" href="assets/images/logo-icon-192.png">
+
+  <!-- Open Graph / Facebook / LinkedIn -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://embuldeniya.github.io/">
+  <meta property="og:title" content="Aurora Labs — Clinical AI for Multilingual South Asian Healthcare">
+  <meta property="og:description" content="Physician-led health AI from Sri Lanka. Nestor.AI is a trilingual ambient medical scribe that cuts documentation time by 65%.">
+  <meta property="og:site_name" content="Aurora Labs">
+  <meta property="og:image" content="https://embuldeniya.github.io/assets/images/logo-full-dark.png">
+  <meta property="og:image:width" content="800">
+  <meta property="og:image:height" content="620">
+  <meta property="og:image:alt" content="Aurora Labs Logo">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://embuldeniya.github.io/">
+  <meta name="twitter:title" content="Aurora Labs — Clinical AI for Multilingual South Asian Healthcare">
+  <meta name="twitter:description" content="Physician-led health AI from Sri Lanka. Nestor.AI is a trilingual ambient medical scribe that cuts documentation time by 65%.">
+  <meta name="twitter:image" content="https://embuldeniya.github.io/assets/images/logo-full-dark.png">
+
+  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
-    rel="stylesheet">
-  <style>
-    :root {
-      --ink: #0a0f14;
-      --ink-2: #2d3748;
-      --ink-3: #64748b;
-      --sky: #0ea5e9;
-      --sky-deep: #0369a1;
-      --sky-pale: #e0f2fe;
-      --sky-mid: #bae6fd;
-      --cream: #fafaf7;
-      --white: #ffffff;
-      --border: rgba(14, 165, 233, 0.15);
-      --border-soft: rgba(0, 0, 0, 0.07);
-    }
-
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--cream);
-      color: var(--ink);
-      font-size: 16px;
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
-
-    /* ── NAV ── */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      padding: 0 48px;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: rgba(250, 250, 247, 0.88);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border-soft);
-    }
-
-    .nav-brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-    }
-
-    .nav-dot {
-      width: 32px;
-      height: 32px;
-      background: var(--sky-deep);
-      border-radius: 9px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .nav-dot svg {
-      width: 17px;
-      height: 17px;
-      stroke: white;
-      fill: none;
-    }
-
-    .nav-logo-text {
-      font-family: 'Instrument Serif', serif;
-      font-size: 20px;
-      color: var(--ink);
-      letter-spacing: -0.01em;
-    }
-
-    .nav-logo-text span {
-      color: var(--sky);
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 32px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-size: 14px;
-      font-weight: 400;
-      color: var(--ink-3);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover {
-      color: var(--ink);
-    }
-
-    .nav-cta {
-      background: var(--sky-deep);
-      color: white !important;
-      padding: 7px 16px;
-      border-radius: 8px;
-      font-weight: 500 !important;
-      font-size: 13px !important;
-      transition: background 0.2s !important;
-    }
-
-    .nav-cta:hover {
-      background: #075985 !important;
-      color: white !important;
-    }
-
-    /* ── HERO ── */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      padding: 100px 48px 80px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 60% 50% at 70% 40%, rgba(14, 165, 233, 0.08) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 40% at 20% 80%, rgba(3, 105, 161, 0.05) 0%, transparent 60%);
-      pointer-events: none;
-    }
-
-    .hero-grid-lines {
-      position: absolute;
-      inset: 0;
-      background-image: linear-gradient(rgba(14, 165, 233, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(14, 165, 233, 0.04) 1px, transparent 1px);
-      background-size: 60px 60px;
-      pointer-events: none;
-    }
-
-    .hero-content {
-      max-width: 640px;
-      position: relative;
-      z-index: 1;
-      animation: fadeUp 0.8s ease both;
-    }
-
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(28px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .hero-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--sky-deep);
-      background: var(--sky-pale);
-      border: 1px solid var(--border);
-      padding: 5px 12px;
-      border-radius: 20px;
-      margin-bottom: 24px;
-    }
-
-    .hero-eyebrow span {
-      width: 6px;
-      height: 6px;
-      background: var(--sky);
-      border-radius: 50%;
-      animation: pulse 2s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-
-      0%,
-      100% {
-        opacity: 1;
-        transform: scale(1);
-      }
-
-      50% {
-        opacity: 0.5;
-        transform: scale(0.8);
-      }
-    }
-
-    .hero h1 {
-      font-family: 'Instrument Serif', serif;
-      font-size: clamp(40px, 5.5vw, 64px);
-      line-height: 1.1;
-      letter-spacing: -0.02em;
-      color: var(--ink);
-      margin-bottom: 20px;
-    }
-
-    .hero h1 em {
-      font-style: italic;
-      color: var(--sky-deep);
-    }
-
-    .hero-sub {
-      font-size: 17px;
-      font-weight: 300;
-      color: var(--ink-2);
-      line-height: 1.7;
-      max-width: 520px;
-      margin-bottom: 36px;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-bottom: 56px;
-    }
-
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--sky-deep);
-      color: white;
-      padding: 12px 24px;
-      border-radius: 10px;
-      font-size: 14px;
-      font-weight: 500;
-      text-decoration: none;
-      transition: background 0.2s, transform 0.15s;
-      border: none;
-      cursor: pointer;
-    }
-
-    .btn-primary:hover {
-      background: #075985;
-      transform: translateY(-1px);
-    }
-
-    .btn-primary svg {
-      width: 16px;
-      height: 16px;
-      stroke: white;
-      fill: none;
-    }
-
-    .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: white;
-      color: var(--ink);
-      padding: 12px 24px;
-      border-radius: 10px;
-      font-size: 14px;
-      font-weight: 500;
-      text-decoration: none;
-      border: 1px solid var(--border-soft);
-      transition: border-color 0.2s, transform 0.15s;
-      cursor: pointer;
-    }
-
-    .btn-secondary:hover {
-      border-color: var(--sky-mid);
-      transform: translateY(-1px);
-    }
-
-    .btn-secondary svg {
-      width: 16px;
-      height: 16px;
-      stroke: var(--ink-3);
-      fill: none;
-    }
-
-    .hero-stats {
-      display: flex;
-      gap: 40px;
-      padding-top: 36px;
-      border-top: 1px solid var(--border-soft);
-    }
-
-    .stat-num {
-      font-family: 'Instrument Serif', serif;
-      font-size: 28px;
-      color: var(--ink);
-      letter-spacing: -0.02em;
-      line-height: 1;
-      margin-bottom: 3px;
-    }
-
-    .stat-label {
-      font-size: 12px;
-      color: var(--ink-3);
-      font-weight: 400;
-    }
-
-    /* Hero visual */
-    .hero-visual {
-      position: absolute;
-      right: 48px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 400px;
-      animation: fadeUp 1s 0.2s ease both;
-    }
-
-    .mock-card {
-      background: white;
-      border: 1px solid var(--border-soft);
-      border-radius: 16px;
-      padding: 20px;
-      box-shadow: 0 4px 32px rgba(0, 0, 0, 0.06);
-    }
-
-    .mock-header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding-bottom: 14px;
-      border-bottom: 1px solid #f1f5f9;
-      margin-bottom: 14px;
-    }
-
-    .mock-avatar {
-      width: 32px;
-      height: 32px;
-      background: var(--sky-pale);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .mock-avatar svg {
-      width: 16px;
-      height: 16px;
-      stroke: var(--sky-deep);
-      fill: none;
-    }
-
-    .mock-title {
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--ink);
-    }
-
-    .mock-sub {
-      font-size: 11px;
-      color: var(--ink-3);
-    }
-
-    .mock-status {
-      margin-left: auto;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      font-size: 11px;
-      color: #059669;
-      background: #d1fae5;
-      padding: 3px 8px;
-      border-radius: 20px;
-      font-weight: 500;
-    }
-
-    .mock-status span {
-      width: 5px;
-      height: 5px;
-      background: #059669;
-      border-radius: 50%;
-    }
-
-    .mock-section {
-      margin-bottom: 12px;
-    }
-
-    .mock-label {
-      font-size: 9px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--sky-deep);
-      margin-bottom: 5px;
-    }
-
-    .mock-line {
-      height: 8px;
-      background: #f1f5f9;
-      border-radius: 4px;
-      margin-bottom: 4px;
-    }
-
-    .mock-pills {
-      display: flex;
-      gap: 4px;
-      flex-wrap: wrap;
-    }
-
-    .mock-pill {
-      font-size: 10px;
-      padding: 3px 8px;
-      border-radius: 12px;
-      font-weight: 500;
-    }
-
-    .pill-red {
-      background: #fef2f2;
-      color: #dc2626;
-    }
-
-    .pill-blue {
-      background: #eff6ff;
-      color: #2563eb;
-    }
-
-    .pill-amber {
-      background: #fffbeb;
-      color: #d97706;
-    }
-
-    .mock-floating {
-      position: absolute;
-      top: -20px;
-      right: -20px;
-      background: white;
-      border: 1px solid var(--border-soft);
-      border-radius: 12px;
-      padding: 10px 14px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--ink);
-      animation: float 4s ease-in-out infinite;
-    }
-
-    @keyframes float {
-
-      0%,
-      100% {
-        transform: translateY(0);
-      }
-
-      50% {
-        transform: translateY(-6px);
-      }
-    }
-
-    .mock-floating-icon {
-      width: 26px;
-      height: 26px;
-      background: #d1fae5;
-      border-radius: 7px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .mock-floating-icon svg {
-      width: 14px;
-      height: 14px;
-      stroke: #059669;
-      fill: none;
-    }
-
-    .mock-floating-2 {
-      position: absolute;
-      bottom: -16px;
-      left: -16px;
-      background: var(--sky-deep);
-      border-radius: 12px;
-      padding: 10px 14px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 12px;
-      font-weight: 500;
-      color: white;
-      animation: float 4s 1s ease-in-out infinite;
-      box-shadow: 0 4px 16px rgba(3, 105, 161, 0.3);
-    }
-
-    /* ── SECTION BASE ── */
-    section {
-      padding: 80px 48px;
-    }
-
-    .section-inner {
-      max-width: 1080px;
-      margin: 0 auto;
-    }
-
-    .section-label {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--sky-deep);
-      margin-bottom: 12px;
-    }
-
-    .section-title {
-      font-family: 'Instrument Serif', serif;
-      font-size: clamp(28px, 3.5vw, 40px);
-      line-height: 1.15;
-      letter-spacing: -0.02em;
-      color: var(--ink);
-      margin-bottom: 16px;
-    }
-
-    .section-title em {
-      font-style: italic;
-      color: var(--sky-deep);
-    }
-
-    .section-body {
-      font-size: 16px;
-      font-weight: 300;
-      color: var(--ink-2);
-      max-width: 520px;
-      line-height: 1.75;
-    }
-
-    /* ── FEATURES ── */
-    #features {
-      background: white;
-    }
-
-    .features-intro {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-      margin-bottom: 64px;
-    }
-
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-
-    .feat-card {
-      background: var(--cream);
-      border: 1px solid var(--border-soft);
-      border-radius: 14px;
-      padding: 22px;
-      transition: box-shadow 0.2s, transform 0.2s;
-    }
-
-    .feat-card:hover {
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
-      transform: translateY(-2px);
-    }
-
-    .feat-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 11px;
-      background: var(--sky-pale);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 14px;
-    }
-
-    .feat-icon svg {
-      width: 20px;
-      height: 20px;
-      stroke: var(--sky-deep);
-      fill: none;
-    }
-
-    .feat-name {
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--ink);
-      margin-bottom: 6px;
-    }
-
-    .feat-desc {
-      font-size: 13px;
-      font-weight: 300;
-      color: var(--ink-3);
-      line-height: 1.6;
-    }
-
-    /* ── FLOW ── */
-    #how-it-works {
-      background: var(--cream);
-    }
-
-    .flow-steps {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0;
-      position: relative;
-      margin-top: 48px;
-    }
-
-    .flow-steps::before {
-      content: '';
-      position: absolute;
-      top: 28px;
-      left: 10%;
-      right: 10%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--sky-mid), var(--sky-mid), transparent);
-    }
-
-    .flow-step {
-      text-align: center;
-      padding: 0 16px;
-      position: relative;
-    }
-
-    .step-icon {
-      width: 56px;
-      height: 56px;
-      background: var(--sky-deep);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 18px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .step-icon svg {
-      width: 22px;
-      height: 22px;
-      stroke: white;
-      fill: none;
-    }
-
-    .step-title {
-      font-size: 15px;
-      font-weight: 500;
-      color: var(--ink);
-      margin-bottom: 6px;
-    }
-
-    .step-desc {
-      font-size: 13px;
-      font-weight: 300;
-      color: var(--ink-3);
-      line-height: 1.6;
-    }
-
-    /* ── LOCAL AI MODEL ── */
-    #ai-model {
-      background: white;
-    }
-
-    .ai-model-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
-      align-items: start;
-      margin-top: 48px;
-    }
-
-    .ai-model-intro {}
-
-    .ai-model-intro p {
-      font-size: 15px;
-      font-weight: 300;
-      color: var(--ink-2);
-      line-height: 1.8;
-      margin-bottom: 16px;
-    }
-
-    .prompt-pillars {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      margin-top: 32px;
-    }
-
-    .pillar {
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      background: var(--cream);
-      border: 1px solid var(--border-soft);
-      border-radius: 12px;
-      padding: 16px 18px;
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
-
-    .pillar:hover {
-      border-color: var(--sky-mid);
-      box-shadow: 0 4px 20px rgba(14, 165, 233, 0.07);
-    }
-
-    .pillar-num {
-      width: 28px;
-      height: 28px;
-      border-radius: 8px;
-      background: var(--sky-deep);
-      color: white;
-      font-size: 12px;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      margin-top: 1px;
-    }
-
-    .pillar-title {
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--ink);
-      margin-bottom: 4px;
-    }
-
-    .pillar-desc {
-      font-size: 13px;
-      font-weight: 300;
-      color: var(--ink-3);
-      line-height: 1.6;
-    }
-
-    .ai-model-right {}
-
-    .model-card {
-      background: var(--ink);
-      border-radius: 16px;
-      padding: 28px;
-      color: white;
-      margin-bottom: 16px;
-    }
-
-    .model-card-label {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--sky-mid);
-      margin-bottom: 10px;
-    }
-
-    .model-card-name {
-      font-family: 'Instrument Serif', serif;
-      font-size: 24px;
-      color: white;
-      margin-bottom: 6px;
-    }
-
-    .model-card-sub {
-      font-size: 13px;
-      color: rgba(255, 255, 255, 0.5);
-      font-weight: 300;
-      margin-bottom: 20px;
-      line-height: 1.6;
-    }
-
-    .model-badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
-    .model-badge {
-      font-size: 11px;
-      padding: 4px 10px;
-      border-radius: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      color: rgba(255, 255, 255, 0.7);
-      background: rgba(255, 255, 255, 0.06);
-    }
-
-    .model-badge.highlight {
-      border-color: rgba(14, 165, 233, 0.4);
-      color: var(--sky-mid);
-      background: rgba(14, 165, 233, 0.1);
-    }
-
-    .prompt-samples {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .prompt-sample {
-      background: var(--cream);
-      border: 1px solid var(--border-soft);
-      border-radius: 10px;
-      padding: 14px 16px;
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-    }
-
-    .prompt-tag {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--sky-deep);
-      background: var(--sky-pale);
-      padding: 2px 8px;
-      border-radius: 6px;
-      flex-shrink: 0;
-      margin-top: 1px;
-    }
-
-    .prompt-text {
-      font-size: 12px;
-      color: var(--ink-2);
-      line-height: 1.55;
-      font-style: italic;
-    }
-
-    /* ── LANGUAGES ── */
-    #languages {
-      background: var(--sky-deep);
-    }
-
-    #languages .section-label {
-      color: var(--sky-mid);
-    }
-
-    #languages .section-title {
-      color: white;
-    }
-
-    #languages .section-body {
-      color: rgba(255, 255, 255, 0.75);
-      max-width: 440px;
-    }
-
-    .lang-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-top: 48px;
-    }
-
-    .lang-card {
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 14px;
-      padding: 28px 24px;
-      transition: background 0.2s;
-    }
-
-    .lang-card:hover {
-      background: rgba(255, 255, 255, 0.15);
-    }
-
-    .lang-script {
-      font-size: 36px;
-      margin-bottom: 12px;
-    }
-
-    .lang-name {
-      font-family: 'Instrument Serif', serif;
-      font-size: 22px;
-      color: white;
-      margin-bottom: 6px;
-    }
-
-    .lang-native {
-      font-size: 14px;
-      color: var(--sky-mid);
-      margin-bottom: 12px;
-    }
-
-    .lang-note {
-      font-size: 13px;
-      color: rgba(255, 255, 255, 0.6);
-      font-weight: 300;
-      line-height: 1.5;
-    }
-
-    /* ── TEAM ── */
-    #team {
-      background: var(--cream);
-    }
-
-    .team-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
-      margin-top: 48px;
-      max-width: 720px;
-    }
-
-    .team-card {
-      background: white;
-      border: 1px solid var(--border-soft);
-      border-radius: 16px;
-      padding: 28px;
-      transition: box-shadow 0.2s;
-    }
-
-    .team-card:hover {
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
-    }
-
-    .team-avatar {
-      width: 56px;
-      height: 56px;
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Instrument Serif', serif;
-      font-size: 20px;
-      margin-bottom: 16px;
-    }
-
-    .avatar-teal {
-      background: #ccfbf1;
-      color: #0f766e;
-    }
-
-    .avatar-blue {
-      background: var(--sky-pale);
-      color: var(--sky-deep);
-    }
-
-    .team-name {
-      font-size: 17px;
-      font-weight: 500;
-      color: var(--ink);
-      margin-bottom: 4px;
-    }
-
-    .team-role {
-      font-size: 13px;
-      color: var(--sky-deep);
-      font-weight: 500;
-      margin-bottom: 8px;
-    }
-
-    .team-bio {
-      font-size: 13px;
-      color: var(--ink-3);
-      font-weight: 300;
-      line-height: 1.6;
-    }
-
-    /* ── PAPER ── */
-    #paper {
-      background: white;
-    }
-
-    .paper-card {
-      background: var(--cream);
-      border: 1px solid var(--border-soft);
-      border-radius: 16px;
-      padding: 36px 40px;
-      display: flex;
-      gap: 40px;
-      align-items: flex-start;
-      max-width: 800px;
-      margin-top: 48px;
-      transition: box-shadow 0.2s;
-    }
-
-    .paper-card:hover {
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
-    }
-
-    .paper-icon {
-      width: 52px;
-      height: 52px;
-      background: var(--sky-pale);
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .paper-icon svg {
-      width: 26px;
-      height: 26px;
-      stroke: var(--sky-deep);
-      fill: none;
-    }
-
-    .paper-venue {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--sky-deep);
-      margin-bottom: 8px;
-    }
-
-    .paper-title {
-      font-family: 'Instrument Serif', serif;
-      font-size: 20px;
-      color: var(--ink);
-      line-height: 1.35;
-      margin-bottom: 8px;
-    }
-
-    .paper-authors {
-      font-size: 13px;
-      color: var(--ink-3);
-      font-weight: 400;
-      margin-bottom: 14px;
-    }
-
-    .paper-abstract {
-      font-size: 13px;
-      color: var(--ink-2);
-      font-weight: 300;
-      line-height: 1.7;
-      margin-bottom: 16px;
-    }
-
-    .badge-lang {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      background: rgba(14, 165, 233, 0.12);
-      color: var(--sky-deep);
-      border: 1px solid rgba(14, 165, 233, 0.2);
-      padding: 4px 10px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 500;
-      margin-right: 6px;
-      margin-top: 6px;
-    }
-
-    /* ── CONTACT / DEMO ── */
-    #contact {
-      background: var(--ink);
-    }
-
-    .contact-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
-      align-items: start;
-    }
-
-    .contact-intro .section-label {
-      color: var(--sky-mid);
-    }
-
-    .contact-intro .section-title {
-      color: white;
-    }
-
-    .contact-intro .section-body {
-      color: rgba(255, 255, 255, 0.6);
-      max-width: 400px;
-      margin-bottom: 32px;
-    }
-
-    .contact-highlights {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .contact-highlight {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 14px;
-      color: rgba(255, 255, 255, 0.7);
-    }
-
-    .contact-highlight svg {
-      width: 16px;
-      height: 16px;
-      stroke: var(--sky);
-      fill: none;
-      flex-shrink: 0;
-    }
-
-    .contact-card-panel {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .demo-card {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 16px;
-      padding: 28px;
-    }
-
-    .demo-card-title {
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--sky-mid);
-      margin-bottom: 6px;
-    }
-
-    .demo-card-head {
-      font-family: 'Instrument Serif', serif;
-      font-size: 20px;
-      color: white;
-      margin-bottom: 16px;
-    }
-
-    .contact-method {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 12px;
-      padding: 16px 18px;
-      text-decoration: none;
-      transition: background 0.2s, border-color 0.2s;
-      margin-bottom: 10px;
-    }
-
-    .contact-method:last-child {
-      margin-bottom: 0;
-    }
-
-    .contact-method:hover {
-      background: rgba(14, 165, 233, 0.12);
-      border-color: rgba(14, 165, 233, 0.3);
-    }
-
-    .contact-method-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .icon-email {
-      background: rgba(14, 165, 233, 0.2);
-    }
-
-    .icon-phone {
-      background: rgba(16, 185, 129, 0.2);
-    }
-
-    .contact-method-icon svg {
-      width: 18px;
-      height: 18px;
-      fill: none;
-    }
-
-    .icon-email svg {
-      stroke: var(--sky);
-    }
-
-    .icon-phone svg {
-      stroke: #34d399;
-    }
-
-    .contact-method-label {
-      font-size: 11px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: rgba(255, 255, 255, 0.4);
-      margin-bottom: 3px;
-    }
-
-    .contact-method-value {
-      font-size: 15px;
-      font-weight: 500;
-      color: white;
-    }
-
-    .demo-note {
-      font-size: 12px;
-      color: rgba(255, 255, 255, 0.35);
-      margin-top: 14px;
-      line-height: 1.6;
-    }
-
-    /* ── FOOTER ── */
-    footer {
-      background: #050a0f;
-      color: white;
-      padding: 40px 48px 32px;
-    }
-
-    .footer-inner {
-      max-width: 1080px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      gap: 48px;
-      padding-bottom: 32px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    }
-
-    .footer-brand-name {
-      font-family: 'Instrument Serif', serif;
-      font-size: 22px;
-      color: white;
-      margin-bottom: 10px;
-    }
-
-    .footer-brand-name span {
-      color: var(--sky);
-    }
-
-    .footer-tagline {
-      font-size: 13px;
-      color: rgba(255, 255, 255, 0.35);
-      font-weight: 300;
-      line-height: 1.6;
-      max-width: 260px;
-    }
-
-    .footer-col-title {
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.3);
-      margin-bottom: 16px;
-    }
-
-    .footer-links {
-      list-style: none;
-    }
-
-    .footer-links li {
-      margin-bottom: 10px;
-    }
-
-    .footer-links a {
-      font-size: 14px;
-      color: rgba(255, 255, 255, 0.5);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .footer-links a:hover {
-      color: white;
-    }
-
-    .footer-bottom {
-      max-width: 1080px;
-      margin: 28px auto 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 12px;
-      color: rgba(255, 255, 255, 0.25);
-    }
-
-    .disclaimer-band {
-      background: #fffbeb;
-      border-top: 1px solid #fde68a;
-      border-bottom: 1px solid #fde68a;
-      padding: 10px 48px;
-      font-size: 12px;
-      color: #92400e;
-      text-align: center;
-    }
-
-    /* ── VIDEO SHOWCASE ── */
-    .video-showcase {
-      margin-top: 64px;
-      position: relative;
-    }
-
-    .video-showcase-label {
-      text-align: center;
-      margin-bottom: 24px;
-    }
-
-    .video-showcase-label span {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--sky-deep);
-      background: var(--sky-pale);
-      border: 1px solid var(--border);
-      padding: 6px 16px;
-      border-radius: 24px;
-    }
-
-    .video-showcase-label span svg {
-      width: 14px;
-      height: 14px;
-      stroke: var(--sky-deep);
-      fill: none;
-    }
-
-    .video-container {
-      position: relative;
-      max-width: 880px;
-      margin: 0 auto;
-      border-radius: 20px;
-      overflow: hidden;
-      background: var(--ink);
-      box-shadow:
-        0 0 0 1px rgba(14, 165, 233, 0.15),
-        0 8px 40px rgba(0, 0, 0, 0.12),
-        0 0 80px rgba(14, 165, 233, 0.06);
-      animation: fadeUp 0.8s 0.3s ease both;
-    }
-
-    .video-container::before {
-      content: '';
-      position: absolute;
-      inset: -1px;
-      border-radius: 21px;
-      padding: 1px;
-      background: linear-gradient(135deg, rgba(14, 165, 233, 0.3), rgba(3, 105, 161, 0.1), rgba(14, 165, 233, 0.2));
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      pointer-events: none;
-      z-index: 2;
-    }
-
-    .video-container video {
-      display: block;
-      width: 100%;
-      height: auto;
-      border-radius: 20px;
-    }
-
-    .video-overlay {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(10, 15, 20, 0.4);
-      backdrop-filter: blur(2px);
-      cursor: pointer;
-      transition: opacity 0.4s ease, visibility 0.4s ease;
-      z-index: 1;
-      border-radius: 20px;
-    }
-
-    .video-overlay.hidden {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-    }
-
-    .play-button {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(12px);
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .play-button:hover {
-      transform: scale(1.1);
-      background: rgba(14, 165, 233, 0.35);
-      border-color: rgba(14, 165, 233, 0.6);
-      box-shadow: 0 0 40px rgba(14, 165, 233, 0.3);
-    }
-
-    .play-button svg {
-      width: 32px;
-      height: 32px;
-      fill: white;
-      margin-left: 4px;
-    }
-
-    .video-caption {
-      text-align: center;
-      margin-top: 16px;
-      font-size: 13px;
-      color: var(--ink-3);
-      font-weight: 300;
-    }
-
-    @media (max-width: 900px) {
-      nav {
-        padding: 0 24px;
-      }
-
-      .nav-links {
-        display: none;
-      }
-
-      .hero {
-        padding: 100px 24px 60px;
-        flex-direction: column;
-        min-height: auto;
-      }
-
-      .hero-visual {
-        position: relative;
-        right: auto;
-        top: auto;
-        transform: none;
-        width: 100%;
-        margin-top: 40px;
-      }
-
-      section {
-        padding: 60px 24px;
-      }
-
-      .features-intro,
-      .ai-model-layout,
-      .contact-layout {
-        grid-template-columns: 1fr;
-        gap: 32px;
-      }
-
-      .feature-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .flow-steps {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .flow-steps::before {
-        display: none;
-      }
-
-      .lang-grid,
-      .team-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .paper-card {
-        flex-direction: column;
-        gap: 20px;
-      }
-
-      .footer-inner {
-        grid-template-columns: 1fr;
-        gap: 32px;
-      }
-
-      .footer-bottom {
-        flex-direction: column;
-        gap: 8px;
-        text-align: center;
-      }
-
-      .disclaimer-band {
-        padding: 10px 24px;
-      }
-
-      .video-container {
-        border-radius: 14px;
-      }
-
-      .video-container::before {
-        border-radius: 15px;
-      }
-
-      .video-container video {
-        border-radius: 14px;
-      }
-
-      .video-overlay {
-        border-radius: 14px;
-      }
-
-      .play-button {
-        width: 60px;
-        height: 60px;
-      }
-
-      .play-button svg {
-        width: 24px;
-        height: 24px;
-      }
-    }
-  </style>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <a href="#" class="nav-brand">
-      <div class="nav-dot">
-        <svg viewBox="0 0 24 24" stroke-width="2">
-          <path d="M9 12h6M12 9v6M4.5 12a7.5 7.5 0 1015 0 7.5 7.5 0 00-15 0" />
-        </svg>
-      </div>
-      <span class="nav-logo-text">Nestor<span>.AI</span></span>
-    </a>
-    <ul class="nav-links">
-      <li><a href="#features">Features</a></li>
-      <li><a href="#ai-model">AI Model</a></li>
-      <li><a href="#how-it-works">How it works</a></li>
-      <li><a href="#languages">Languages</a></li>
-      <li><a href="#team">Team</a></li>
-      <li><a href="#paper">Research</a></li>
-      <li><a href="#contact" class="nav-cta">Book a Demo</a></li>
-    </ul>
-  </nav>
+  <!-- Accessible Skip to Main Content Link -->
+  <a href="#main" class="skip-to-content">Skip to content</a>
 
-  <!-- DISCLAIMER -->
-  <div class="disclaimer-band">
-    ⚠️ Research prototype — AI-generated clinical summaries require physician review before clinical use.
+  <!-- Ambient Glow Elements -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="ambient-glow glow-3"></div>
+  <div class="grid-bg-overlay"></div>
+
+  <!-- Header / Navigation -->
+  <header class="navbar">
+    <div class="container">
+      <a href="#hero" class="nav-brand" aria-label="Aurora Labs Home">
+        <div class="brand-icon">
+          <img src="assets/images/logo-icon-192.png" alt="Aurora Labs Logo" width="38" height="38" class="brand-logo-img">
+        </div>
+        <div class="brand-info">
+          <span class="brand-name">Aurora Labs</span>
+          <span class="brand-tag">Clinical AI for South Asia</span>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#opportunity" class="nav-link">Opportunity</a></li>
+        <li><a href="#platform" class="nav-link">Platform</a></li>
+        <li><a href="#traction" class="nav-link">Traction</a></li>
+        <li><a href="#founders" class="nav-link">Team</a></li>
+        <li><a href="#investors" class="nav-link">Investors</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <!-- Accessible Theme Toggle Button (Desktop) -->
+        <button class="theme-toggle" id="themeToggle" aria-label="Switch between dark and light mode" title="Toggle theme">
+          <span class="theme-icon sun-icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+          </span>
+          <span class="theme-icon moon-icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </span>
+        </button>
+
+        <a href="#investors" class="btn btn-primary btn-sm">Investor Overview</a>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Navigation Menu" aria-expanded="false">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Slide Menu Drawer -->
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile Navigation Drawer">
+    <div style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 12px; border-bottom: 1px solid var(--border-subtle); margin-bottom: 4px;">
+      <span style="font-size: 13px; font-weight: 600; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.05em;">Theme</span>
+      <button class="theme-toggle" id="mobileThemeToggle" aria-label="Switch between dark and light mode">
+        <span class="theme-icon sun-icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </span>
+        <span class="theme-icon moon-icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </span>
+      </button>
+    </div>
+    <a href="#opportunity" class="nav-link">Opportunity</a>
+    <a href="#platform" class="nav-link">Platform</a>
+    <a href="#projects" class="nav-link">Products</a>
+    <a href="#traction" class="nav-link">Traction</a>
+    <a href="#founders" class="nav-link">Team</a>
+    <a href="#investors" class="nav-link">Investors</a>
+    <a href="#contact" class="nav-link">Contact Us</a>
+    <a href="#investors" class="btn btn-primary" style="margin-top: 8px;">Investor Overview</a>
   </div>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-grid-lines"></div>
-    <div class="hero-content">
-      <div class="hero-eyebrow">
-        <span></span>
-        AI physician assistant · Sri Lanka
-      </div>
-      <h1>Multilingual clinical<br><em>documentation</em><br>for Sri Lanka</h1>
-      <p class="hero-sub">
-        Nestor.AI converts doctor–patient consultations into structured clinical records — in Sinhala, Tamil, and
-        English — so clinicians can focus on patients, not paperwork.
-      </p>
-      <div class="hero-actions">
-        <a href="#contact" class="btn-primary">
-          <svg viewBox="0 0 24 24" stroke-width="2">
-            <path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01" />
-          </svg>
-          Book a Demo
-        </a>
-        <a href="#paper" class="btn-secondary">
-          <svg viewBox="0 0 24 24" stroke-width="2">
-            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
-            <polyline points="14 2 14 8 20 8" />
-            <line x1="16" y1="13" x2="8" y2="13" />
-            <line x1="16" y1="17" x2="8" y2="17" />
-          </svg>
-          Read the abstract
-        </a>
-      </div>
-      <div class="hero-stats">
-        <div class="stat-item">
-          <div class="stat-num">3</div>
-          <div class="stat-label">Languages supported</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num">60%~70%</div>
-          <div class="stat-label">Overall reduction in consultation time</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num">100%</div>
-          <div class="stat-label">Locally built</div>
-        </div>
-      </div>
-    </div>
-    <div class="hero-visual">
-      <div style="position:relative">
-        <div class="mock-floating">
-          <div class="mock-floating-icon">
-            <svg viewBox="0 0 24 24" stroke-width="2">
-              <polyline points="20 6 9 17 4 12" />
-            </svg>
+  <!-- Main Content Landmark for Accessibility -->
+  <main id="main">
+
+  <!-- Hero Section -->
+  <section class="hero-section" id="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content-col">
+          <div class="section-eyebrow">
+            <span class="badge-pulse"></span>
+            Physician-led Health AI · Sri Lanka
           </div>
-          Summary generated
-        </div>
-        <div class="mock-card">
-          <div class="mock-header">
-            <div class="mock-avatar">
-              <svg viewBox="0 0 24 24" stroke-width="2">
-                <path d="M9 12h6M12 9v6M4.5 12a7.5 7.5 0 1015 0 7.5 7.5 0 00-15 0" />
+          <h1 class="hero-headline">
+            Ambient clinical AI built for <span class="gradient-text">multilingual South Asian healthcare</span>
+          </h1>
+          <p class="hero-subtitle">
+            Doctors in Sri Lanka consult in Sinhala, Tamil and English — often in the same sentence. Global medical scribes are built for English-only clinics. Aurora Labs builds the clinical AI layer for the way care is actually delivered here, starting with Nestor.AI: an ambient scribe that cuts documentation time by 65%.
+          </p>
+          <div class="hero-cta-group">
+            <a href="#investors" class="btn btn-primary">
+              <span>Investor Overview</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
               </svg>
+            </a>
+            <a href="/nestorai" class="btn btn-secondary">
+              <span>See Nestor.AI</span>
+            </a>
+          </div>
+          <div class="hero-meta-strip">
+            <div class="meta-item">
+              <svg class="meta-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+              <span>Clinically led by a practicing physician</span>
             </div>
-            <div>
-              <div class="mock-title">Clinical Summary</div>
-              <div class="mock-sub">Outpatient · Sinhala</div>
+            <div class="meta-item">
+              <svg class="meta-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+              <span>Headquartered in Nugegoda, Sri Lanka</span>
             </div>
-            <div class="mock-status"><span></span> Complete</div>
-          </div>
-          <div class="mock-section">
-            <div class="mock-label">Presenting complaint</div>
-            <div class="mock-line" style="width:90%"></div>
-            <div class="mock-line" style="width:65%"></div>
-          </div>
-          <div class="mock-section">
-            <div class="mock-label">Examination findings</div>
-            <div class="mock-line" style="width:80%"></div>
-            <div class="mock-line" style="width:55%"></div>
-          </div>
-          <div class="mock-section">
-            <div class="mock-label">Problems / Diagnoses</div>
-            <div class="mock-pills">
-              <span class="mock-pill pill-blue">Type 2 DM</span>
-              <span class="mock-pill pill-amber">Hypertension</span>
-              <span class="mock-pill pill-red">? UTI</span>
+            <div class="meta-item">
+              <svg class="meta-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              <span>Products built &amp; owned in-house</span>
             </div>
-          </div>
-          <div class="mock-section">
-            <div class="mock-label">Management</div>
-            <div class="mock-line" style="width:75%"></div>
-            <div class="mock-line" style="width:50%"></div>
           </div>
         </div>
-        <div class="mock-floating-2">
-          <svg viewBox="0 0 24 24" stroke-width="2" style="width:14px;height:14px;stroke:white;fill:none;flex-shrink:0">
-            <path d="M12 2a9 9 0 109 9H12V2z" />
-          </svg>
-          Drug interaction flagged
+
+        <!-- Hero Snapshot Card -->
+        <div class="hero-visual-card">
+          <div class="visual-card-header">
+            <div>
+              <span class="card-kicker">Company Snapshot</span>
+              <h2 class="card-heading">Aurora Labs at a glance</h2>
+            </div>
+            <span class="live-pill">
+              <span class="badge-pulse"></span>
+              Early Stage
+            </span>
+          </div>
+
+          <div class="metric-highlights">
+            <div class="metric-box">
+              <div class="metric-num">65<span>%</span></div>
+              <div class="metric-desc">Less documentation time per outpatient consult (8 min → under 2.5 min)</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-num">3<span class="metric-unit">languages</span></div>
+              <div class="metric-desc">Sinhala, Tamil &amp; English with natural code-switching</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-num">5<span class="metric-unit">products</span></div>
+              <div class="metric-desc">Built in-house across the care journey &amp; data infrastructure</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-num">35<span>k+</span></div>
+              <div class="metric-desc">Records processed by our production data pipelines</div>
+            </div>
+          </div>
+
+          <dl class="snapshot-list">
+            <div><dt>Flagship</dt><dd>Nestor.AI — trilingual ambient medical scribe, in clinic pilots</dd></div>
+            <div><dt>Beachhead</dt><dd>Sri Lankan outpatient &amp; private practice</dd></div>
+            <div><dt>Stage</dt><dd>Clinic pilots with outpatient practices</dd></div>
+          </dl>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FEATURES -->
-  <section id="features">
-    <div class="section-inner">
-      <div class="features-intro">
-        <div>
-          <div class="section-label">Capabilities</div>
-          <h2 class="section-title">Everything a busy<br><em>outpatient clinic</em><br>needs</h2>
-        </div>
-        <p class="section-body">
-          Built for Sri Lankan healthcare realities: high patient volumes, multilingual consultations, and the need for
-          complete documentation in minutes, not hours.
+  <!-- Problem & Opportunity -->
+  <section id="opportunity" class="section-bordered">
+    <div class="container">
+      <div class="text-center">
+        <div class="section-eyebrow">The Problem</div>
+        <h2 class="section-title">Clinicians spend their day writing, not treating</h2>
+        <p class="section-desc">
+          In busy outpatient clinics, every minute spent on notes is a minute away from patients. The tools that exist were not designed for the languages, workflows or budgets of South Asian healthcare.
         </p>
       </div>
-      <div class="feature-grid">
-        <div class="feat-card">
-          <div class="feat-icon"><svg viewBox="0 0 24 24" stroke-width="1.5">
-              <path d="M12 2a3 3 0 00-3 3v7a3 3 0 006 0V5a3 3 0 00-3-3z" />
-              <path d="M19 10v2a7 7 0 01-14 0v-2M12 19v3M8 22h8" />
-            </svg></div>
-          <div class="feat-name">Multilingual speech-to-text</div>
-          <div class="feat-desc">Records and transcribes Sinhala, Tamil, and English, including mixed-language
-            consultations.</div>
-        </div>
-        <div class="feat-card">
-          <div class="feat-icon"><svg viewBox="0 0 24 24" stroke-width="1.5">
-              <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
-              <polyline points="14 2 14 8 20 8" />
-              <line x1="16" y1="13" x2="8" y2="13" />
-              <line x1="16" y1="17" x2="8" y2="17" />
-            </svg></div>
-          <div class="feat-name">Structured clinical notes</div>
-          <div class="feat-desc">Auto-generates histories, examinations, investigations, diagnoses, prescriptions, and
-            review plans.</div>
-        </div>
-        <div class="feat-card">
-          <div class="feat-icon"><svg viewBox="0 0 24 24" stroke-width="1.5">
-              <circle cx="12" cy="12" r="10" />
-              <path d="M12 8v4l3 3" />
-            </svg></div>
-          <div class="feat-name">AI-driven clinical suggestions</div>
-          <div class="feat-desc">Flags missing diagnoses, drug interactions, allergy risks, and overlooked
-            differentials.</div>
-        </div>
-        <div class="feat-card">
-          <div class="feat-icon"><svg viewBox="0 0 24 24" stroke-width="1.5">
-              <line x1="22" y1="2" x2="11" y2="13" />
-              <polygon points="22 2 15 22 11 13 2 9 22 2" />
-            </svg></div>
-          <div class="feat-name">Referral letter generation</div>
-          <div class="feat-desc">One-click formal referral letters that are editable, printable, and saved directly to
-            the patient's record.</div>
-        </div>
-        <div class="feat-card">
-          <div class="feat-icon"><svg viewBox="0 0 24 24" stroke-width="1.5">
-              <rect x="5" y="2" width="14" height="20" rx="2" />
-              <line x1="9" y1="7" x2="15" y2="7" />
-              <line x1="9" y1="11" x2="15" y2="11" />
-              <line x1="9" y1="15" x2="13" y2="15" />
-            </svg></div>
-          <div class="feat-name">Document scanning (OCR)</div>
-          <div class="feat-desc">Enables attaching lab reports and imaging results, which are automatically extracted
-            and merged into the summary.</div>
-        </div>
-        <div class="feat-card">
-          <div class="feat-icon"><svg viewBox="0 0 24 24" stroke-width="1.5">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-            </svg></div>
-          <div class="feat-name">Secure &amp; private</div>
-          <div class="feat-desc">Features end-to-end encryption, per-user data isolation, and strict access controls to
-            ensure patient confidentiality.</div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- LOCAL AI MODEL -->
-  <section id="ai-model">
-    <div class="section-inner">
-      <div class="section-label">AI Engine</div>
-      <h2 class="section-title">A locally optimised<br><em>clinical language model</em></h2>
-      <div class="ai-model-layout">
-        <div class="ai-model-intro">
-          <p>Nestor.AI is powered by a locally fine-tuned large language model, purpose-built for Sri Lankan clinical
-            documentation. Rather than relying on generic AI responses, every output is shaped by locally aligned
-            clinical prompts that encode the structure, standards, and language patterns of Sri Lankan outpatient
-            medicine.</p>
-          <p>The model understands the nuances of multilingual consultations, translating Sinhala and Tamil clinical
-            narratives into precise, structured English documentation, while remaining grounded in locally relevant
-            drug lists, investigation references, and diagnostic terminology.</p>
-
-          <div class="prompt-pillars">
-            <div class="pillar">
-              <div class="pillar-num">1</div>
-              <div>
-                <div class="pillar-title">Clinical structure modeling</div>
-                <div class="pillar-desc">The model enforces a SOAP-style note structure — chief complaint, history,
-                  examination, investigations, assessment, and plan — automatically, every time.</div>
-              </div>
-            </div>
-            <div class="pillar">
-              <div class="pillar-num">2</div>
-              <div>
-                <div class="pillar-title">Sri Lankan medical vocabulary</div>
-                <div class="pillar-desc">A custom speech context featuring 300+ locally relevant drug names,
-                  investigations,
-                  and clinical terms across Sinhala, Tamil, and English.</div>
-              </div>
-            </div>
-            <div class="pillar">
-              <div class="pillar-num">3</div>
-              <div>
-                <div class="pillar-title">Safety-first model constraints</div>
-                <div class="pillar-desc">Hard-coded guardrails that force the model to flag drug interactions, allergy
-                  contraindications, and missing diagnoses before the output is finalised.</div>
-              </div>
-            </div>
-            <div class="pillar">
-              <div class="pillar-num">4</div>
-              <div>
-                <div class="pillar-title">Iterative refinement loop</div>
-                <div class="pillar-desc">Doctors can append additional notes, scanned documents, or corrections, and the
-                  model re-summarises the full context with each update.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="ai-model-right">
-          <div class="model-card">
-            <div class="model-card-label">Local AI Model</div>
-            <div class="model-card-name">Nestor Clinical Engine</div>
-            <div class="model-card-sub">A locally deployed large language model fine-tuned on Sri Lankan clinical
-              workflows — operating entirely within a secure, local infrastructure. No patient data leaves the system.
-            </div>
-            <div class="model-badges">
-              <span class="model-badge highlight">Locally deployed</span>
-              <span class="model-badge highlight">No data export</span>
-              <span class="model-badge">Multilingual</span>
-              <span class="model-badge">Clinical fine-tuning</span>
-              <span class="model-badge">Model training</span>
-              <span class="model-badge">Sri Lanka–specific</span>
-            </div>
-          </div>
-
-
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- HOW IT WORKS -->
-  <section id="how-it-works">
-    <div class="section-inner">
-      <div class="section-label">Workflow</div>
-      <h2 class="section-title">From consultation to<br><em>complete record</em> in minutes</h2>
-      <div class="flow-steps">
-        <div class="flow-step">
-          <div class="step-icon">
-            <svg viewBox="0 0 24 24" stroke-width="2">
-              <path d="M12 2a3 3 0 00-3 3v7a3 3 0 006 0V5a3 3 0 00-3-3z" />
-              <path d="M19 10v2a7 7 0 01-14 0v-2" />
-            </svg>
-          </div>
-          <div class="step-title">Record</div>
-          <div class="step-desc">The doctor starts recording the consultation, and the audio is captured securely in the
-            browser.
-          </div>
-        </div>
-        <div class="flow-step">
-          <div class="step-icon">
-            <svg viewBox="0 0 24 24" stroke-width="2">
-              <polyline points="16 18 22 12 16 6" />
-              <polyline points="8 6 2 12 8 18" />
-            </svg>
-          </div>
-          <div class="step-title">Transcribe</div>
-          <div class="step-desc">AI speech recognition converts the audio to text, supporting Sinhala, Tamil, and
-            English.
-          </div>
-        </div>
-        <div class="flow-step">
-          <div class="step-icon">
-            <svg viewBox="0 0 24 24" stroke-width="2">
-              <path
-                d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" />
-            </svg>
-          </div>
-          <div class="step-title">Summarise</div>
-          <div class="step-desc">The local AI engine generates a structured clinical note using locally aligned clinical
-            prompts.
-          </div>
-        </div>
-        <div class="flow-step">
-          <div class="step-icon">
-            <svg viewBox="0 0 24 24" stroke-width="2">
-              <path d="M9 11l3 3L22 4" />
-              <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" />
-            </svg>
-          </div>
-          <div class="step-title">Review &amp; save</div>
-          <div class="step-desc"> The doctor reviews, edits, and approves the summary, and then saves, prints, or
-            refers.
-          </div>
-        </div>
-      </div>
-
-      <!-- Video Showcase -->
-      <div class="video-showcase">
-        <div class="video-showcase-label">
-          <span>
-            <svg viewBox="0 0 24 24" stroke-width="2">
-              <polygon points="5 3 19 12 5 21 5 3" />
-            </svg>
-            Promo
-          </span>
-        </div>
-        <div class="video-container" id="video-container">
-          <div class="video-overlay" id="video-overlay" onclick="playVideo()">
-            <div class="play-button">
-              <svg viewBox="0 0 24 24">
-                <polygon points="6 3 20 12 6 21 6 3" />
-              </svg>
-            </div>
-          </div>
-          <video id="demo-video" preload="metadata" controls controlsList="nodownload" playsinline>
-            <source src="Nestor_AI_promo.mp4" type="video/mp4">
-            Your browser does not support the video element.
-          </video>
-        </div>
-        <div class="video-caption">A walkthrough of the full Nestor.AI consultation workflow — from recording to
-          structured clinical summary.</div>
-      </div>
-    </div>
-  </section>
-
-  <script>
-    function playVideo() {
-      const video = document.getElementById('demo-video');
-      const overlay = document.getElementById('video-overlay');
-      overlay.classList.add('hidden');
-      video.play();
-    }
-
-    // Show overlay again when video ends
-    document.getElementById('demo-video').addEventListener('ended', function () {
-      document.getElementById('video-overlay').classList.remove('hidden');
-    });
-
-    // Show overlay when video is paused (only if not scrubbing)
-    document.getElementById('demo-video').addEventListener('pause', function () {
-      if (this.currentTime === 0 || this.ended) {
-        document.getElementById('video-overlay').classList.remove('hidden');
-      }
-    });
-  </script>
-
-  <!-- LANGUAGES -->
-  <section id="languages">
-    <div class="section-inner">
-      <div class="section-label">Language support</div>
-      <h2 class="section-title">Sri Lanka speaks<br><em>three languages</em> — so does Nestor.AI</h2>
-      <p class="section-body">Clinicians can consult in their preferred language. Mixed-language consultations are
-        handled seamlessly — no configuration required.</p>
-      <div class="lang-grid">
-        <div class="lang-card">
-          <div class="lang-script">සිං</div>
-          <div class="lang-name">Sinhala</div>
-          <div class="lang-native">සිංහල</div>
-          <div class="lang-note">AI-powered transcription optimised for medical vocabulary and the Sri Lankan clinical
-            context, with full translation to structured English documentation.</div>
-        </div>
-        <div class="lang-card">
-          <div class="lang-script">தமி</div>
-          <div class="lang-name">Tamil</div>
-          <div class="lang-native">தமிழ்</div>
-          <div class="lang-note">Full medical transcription support for Tamil-medium consultations across Northern and
-            Eastern clinics, with seamless English summarisation.</div>
-        </div>
-        <div class="lang-card">
-          <div class="lang-script">En</div>
-          <div class="lang-name">English</div>
-          <div class="lang-native">English</div>
-          <div class="lang-note">Enhanced speech recognition with a 300+ term Sri Lankan clinical vocabulary, including
-            drug names, investigations, and local diagnostic terminology.</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TEAM -->
-  <section id="team">
-    <div class="section-inner">
-      <div class="section-label">The team</div>
-      <h2 class="section-title">Built by clinicians<br>&amp; <em>engineers</em></h2>
-      <div class="team-grid">
-        <div class="team-card">
-          <div class="team-avatar avatar-teal">HI</div>
-          <div class="team-name">Dr. Helix </div>
-          <div class="team-role">Clinical Lead &amp; Co-investigator</div>
-          <div class="team-bio">A medical doctor with expertise in Sri Lankan outpatient clinical workflows, who drives
-            the
-            clinical design, safety requirements, and real-world validation of Nestor.AI.</div>
-        </div>
-        <div class="team-card">
-          <div class="team-avatar avatar-blue">TE</div>
-          <div class="team-name">T. Embuldeniya</div>
-          <div class="team-role">Software Lead &amp; Co-investigator</div>
-          <div class="team-bio">A software engineer building Nestor.AI's full stack, including the frontend, backend,
-            and local AI
-            pipeline with multilingual speech processing and clinical models.</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PAPER -->
-  <section id="paper">
-    <div class="section-inner">
-      <div class="section-label">Research</div>
-      <h2 class="section-title">Presented at academic<br><em>conference · 2026</em></h2>
-      <div class="paper-card">
-        <div class="paper-icon">
-          <svg viewBox="0 0 24 24" stroke-width="1.5">
-            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
-            <polyline points="14 2 14 8 20 8" />
-            <line x1="16" y1="13" x2="8" y2="13" />
-            <line x1="16" y1="17" x2="8" y2="17" />
-            <polyline points="10 9 9 9 8 9" />
-          </svg>
-        </div>
-        <div>
-          <div class="paper-venue">Academic Conference Poster · Sri Lanka · 2026</div>
-          <div class="paper-title">NESTOR.AI: A Native AI Physician Assistant for Multilingual Clinical Documentation in
-            Sri Lanka</div>
-          <div class="paper-authors">Dr. Helix , T. Embuldeniya</div>
-          <div class="paper-abstract">
-            NESTOR.AI is a locally developed AI Physician Assistant designed for Sri Lankan outpatient settings. The
-            platform utilises multilingual speech recognition and locally deployed AI, incorporating locally aligned
-            clinical prompts, to convert doctor–patient conversations into structured medical documentation. It supports
-            Sinhala,
-            Tamil, and English consultations, generating clinical notes, prescriptions, referral letters, and
-            searchable digital records, while providing AI-driven clinical decision support and drug safety alerts.
-          </div>
-          <div>
-            <span class="badge-lang">Sinhala</span>
-            <span class="badge-lang">Tamil</span>
-            <span class="badge-lang">English</span>
-            <span class="badge-lang">AI documentation</span>
-            <span class="badge-lang">Sri Lanka</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT / BOOK A DEMO -->
-  <section id="contact">
-    <div class="section-inner">
-      <div class="contact-layout">
-        <div class="contact-intro">
-          <div class="section-label" style="color:var(--sky-mid)">Get in touch</div>
-          <h2 class="section-title" style="color:white">Book a <em style="color:var(--sky)">demo</em><br>or ask us
-            anything</h2>
-          <p class="section-body" style="color:rgba(255,255,255,0.6);max-width:400px;margin-bottom:32px;">
-            We'd love to show Nestor.AI in action. Reach out to arrange a live demonstration for your clinic, hospital,
-            or institution — or simply to learn more about the project.
+      <div class="offerings-grid problem-grid">
+        <div class="offering-card">
+          <div class="problem-num">01</div>
+          <h3 class="offering-title">Documentation burden</h3>
+          <p class="offering-desc">
+            A typical outpatient note takes around 8 minutes to write. Across a full clinic list, that's hours of physician time lost every day — and a leading driver of burnout.
           </p>
-          <div class="contact-highlights">
-            <div class="contact-highlight">
-              <svg viewBox="0 0 24 24" stroke-width="2">
-                <polyline points="20 6 9 17 4 12" />
-              </svg>
-              Live demo of the full consultation workflow
+        </div>
+        <div class="offering-card">
+          <div class="problem-num">02</div>
+          <h3 class="offering-title">The language gap</h3>
+          <p class="offering-desc">
+            Consultations switch fluidly between Sinhala, Tamil and English. English-first AI scribes break on code-switched speech, leaving these markets underserved.
+          </p>
+        </div>
+        <div class="offering-card">
+          <div class="problem-num">03</div>
+          <h3 class="offering-title">Fragmented, paper-heavy records</h3>
+          <p class="offering-desc">
+            Many practices still run on paper, handwritten lab reports and disconnected tools — so patient history, safety checks and follow-up are hard to get right.
+          </p>
+        </div>
+      </div>
+
+      <div class="why-now">
+        <div class="why-now-label">Why now</div>
+        <ul class="why-now-list">
+          <li><strong>Speech &amp; language models</strong> can now handle low-resource and code-switched languages at clinical quality.</li>
+          <li><strong>WhatsApp is the default channel</strong> for patients — a zero-install front door for intake and follow-up.</li>
+          <li><strong>Cloud costs have collapsed</strong>, making AI affordable at emerging-market price points.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Platform / Solution -->
+  <section id="platform">
+    <div class="container">
+      <div class="text-center">
+        <div class="section-eyebrow">Our Solution</div>
+        <h2 class="section-title">One clinical AI platform across the patient journey</h2>
+        <p class="section-desc">
+          We land with Nestor.AI, a high-value wedge product that saves doctors time from day one, then expand within each clinic through connected products that share the same trilingual AI core.
+        </p>
+      </div>
+
+      <ol class="journey">
+        <li class="journey-step">
+          <span class="journey-stage">Before the visit</span>
+          <h3>CareGo</h3>
+          <p>WhatsApp patient intake &amp; triage with red-flag screening.</p>
+        </li>
+        <li class="journey-step journey-step-flagship">
+          <span class="journey-stage">During the consult · Flagship</span>
+          <h3>Nestor.AI</h3>
+          <p>Ambient scribe that turns conversation into SOAP notes, prescriptions &amp; referrals.</p>
+        </li>
+        <li class="journey-step">
+          <span class="journey-stage">Across the clinic</span>
+          <h3>Nestor EMR</h3>
+          <p>Records, scheduling, lab &amp; pharmacy workflows for the whole care team.</p>
+        </li>
+        <li class="journey-step">
+          <span class="journey-stage">Training the next generation</span>
+          <h3>EduBot</h3>
+          <p>Diagnostic-reasoning trainer for medical students.</p>
+        </li>
+      </ol>
+
+      <div class="offerings-grid moat-grid">
+        <div class="offering-card">
+          <div class="offering-icon-wrap">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/>
+              <path d="M19 10v2a7 7 0 01-14 0v-2"/>
+            </svg>
+          </div>
+          <h3 class="offering-title">Trilingual clinical language core</h3>
+          <p class="offering-desc">
+            Speech and NLP pipelines tuned for code-switched Sinhala, Tamil and English clinical dialogue — hard to replicate, and it compounds with every consultation.
+          </p>
+        </div>
+        <div class="offering-card">
+          <div class="offering-icon-wrap">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <h3 class="offering-title">Physician-designed safety</h3>
+          <p class="offering-desc">
+            Clinical protocols, drug-allergy and contraindication checks, and red-flag screening are designed by a practicing doctor and validated with working physicians.
+          </p>
+        </div>
+        <div class="offering-card">
+          <div class="offering-icon-wrap">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+              <line x1="8" y1="21" x2="16" y2="21"/>
+              <line x1="12" y1="17" x2="12" y2="21"/>
+            </svg>
+          </div>
+          <h3 class="offering-title">Capital-efficient engineering</h3>
+          <p class="offering-desc">
+            Five products built by a founding team on lean, serverless cloud infrastructure — proof we can build fast and keep unit costs low.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Projects / Portfolio -->
+  <section id="projects" class="section-tinted">
+    <div class="container">
+      <div class="text-center">
+        <div class="section-eyebrow">Product Portfolio</div>
+        <h2 class="section-title">Products built by Aurora Labs</h2>
+        <p class="section-desc">
+          Our clinical AI suite, plus a market-intelligence data platform that proves our large-scale data engineering in production.
+        </p>
+
+        <!-- Category Filters -->
+        <div class="filter-tabs">
+          <button class="filter-btn active" data-category="all">All Products</button>
+          <button class="filter-btn" data-category="health">Health &amp; Clinical AI</button>
+          <button class="filter-btn" data-category="bots">Medical Chatbots</button>
+          <button class="filter-btn" data-category="data">Data Platform</button>
+        </div>
+      </div>
+
+      <div class="projects-grid">
+        <!-- Project 1: Nestor.AI -->
+        <div class="project-card project-card-flagship" data-category="health">
+          <div class="project-header">
+            <div class="project-tag-wrap">
+              <span class="project-tag project-tag-flagship">Flagship</span>
+              <span class="project-tag">Healthcare AI</span>
+              <span class="project-tag">Ambient NLP</span>
             </div>
-            <div class="contact-highlight">
-              <svg viewBox="0 0 24 24" stroke-width="2">
-                <polyline points="20 6 9 17 4 12" />
-              </svg>
-              Walkthrough of the local AI model
-            </div>
-            <div class="contact-highlight">
-              <svg viewBox="0 0 24 24" stroke-width="2">
-                <polyline points="20 6 9 17 4 12" />
-              </svg>
-              Discussion of clinical integration and deployment options
-            </div>
-            <div class="contact-highlight">
-              <svg viewBox="0 0 24 24" stroke-width="2">
-                <polyline points="20 6 9 17 4 12" />
-              </svg>
-              Available for outpatient clinics, hospitals, and research collaborations
-            </div>
+            <span class="project-status">Pilot Stage</span>
+          </div>
+          <h3 class="project-title">
+            <a href="/nestorai" style="color: inherit; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
+              <span>Nestor.AI</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="opacity: 0.6;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          </h3>
+          <div class="project-subtitle">Trilingual AI Physician Assistant &amp; Medical Scribe</div>
+          <p class="project-overview">
+            Listens ambiently to doctor-patient consultations in Sinhala, Tamil, or English (including natural code-switching) and converts dialogue into structured, standardized clinical SOAP notes, prescriptions, and referral letters. Saves 65% of clinical writing time.
+          </p>
+          <div class="project-actions">
+            <a href="/nestorai" class="btn btn-primary btn-sm">
+              <span>Launch Nestor.AI</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#contact" class="btn btn-secondary btn-sm">
+              <span>Inquire / Demo</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <span style="font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); margin-left: auto;">Ambient Speech</span>
           </div>
         </div>
 
-        <div class="contact-card-panel">
-          <div class="demo-card">
-            <div class="demo-card-title">Book a demo</div>
-            <div class="demo-card-head">Reach us directly</div>
-
-            <a href="mailto:nestorai.demo@gmail.com" class="contact-method">
-              <div class="contact-method-icon icon-email">
-                <svg viewBox="0 0 24 24" stroke-width="2">
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                  <polyline points="22,6 12,13 2,6" />
-                </svg>
-              </div>
-              <div>
-                <div class="contact-method-label">Email us</div>
-                <div class="contact-method-value">nestorai@embuldeniya.com</div>
-              </div>
+        <!-- Project 2: Nestor EMR -->
+        <div class="project-card" data-category="health">
+          <div class="project-header">
+            <div class="project-tag-wrap">
+              <span class="project-tag">Clinical OS</span>
+              <span class="project-tag">Full-Stack</span>
+            </div>
+            <span class="project-status">Production Ready</span>
+          </div>
+          <h3 class="project-title">
+            <span>Nestor EMR</span>
+          </h3>
+          <div class="project-subtitle">Integrated Multi-Role Electronic Medical Records Platform</div>
+          <p class="project-overview">
+            A comprehensive electronic medical records and clinic operating system designed for outpatient practices. Integrates Doctors, Receptionists, Nurses, and Admins with 7-day schedule booking, investigations timelines, and direct lab/pharmacy workflows.
+          </p>
+          <div class="project-actions">
+            <a href="#contact" class="btn btn-secondary btn-sm">
+              <span>Inquire / Demo</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
+            <span style="font-size: 12px; color: var(--text-dim); font-family: var(--font-mono);">Multi-Role RBAC</span>
+          </div>
+        </div>
 
-            <a href="tel:+94771234567" class="contact-method">
-              <div class="contact-method-icon icon-phone">
-                <svg viewBox="0 0 24 24" stroke-width="2">
-                  <path
-                    d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.27 9.8a19.79 19.79 0 01-3.07-8.67A2 2 0 013.18 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
-                </svg>
-              </div>
-              <div>
-                <div class="contact-method-label">Call us or Whatsapp us</div>
-                <div class="contact-method-value">+94 74 026 4010</div>
-              </div>
+        <!-- Project 3: CareGo -->
+        <div class="project-card" data-category="bots">
+          <div class="project-header">
+            <div class="project-tag-wrap">
+              <span class="project-tag">WhatsApp AI</span>
+              <span class="project-tag">Patient Bot</span>
+            </div>
+            <span class="project-status">Production Ready</span>
+          </div>
+          <h3 class="project-title">
+            <span>CareGo</span>
+          </h3>
+          <div class="project-subtitle">WhatsApp-First Patient Bot &amp; Clinical Triage Engine</div>
+          <p class="project-overview">
+            An intelligent patient bot allowing Sri Lankan patients to message symptoms via WhatsApp text or voice note in Sinhala, Tamil, or English. The bot conducts one-at-a-time clinical triage, screens for red flags, and feeds structured summaries directly into a physician review dashboard.
+          </p>
+          <div class="project-actions">
+            <a href="#contact" class="btn btn-secondary btn-sm">
+              <span>Inquire / Demo</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
+            <span style="font-size: 12px; color: var(--text-dim); font-family: var(--font-mono);">WhatsApp E2EE</span>
+          </div>
+        </div>
 
-            <p class="demo-note">We typically respond within one business day. Demos are available in-person (Colombo)
-              or via video call for institutions outside the Western Province.</p>
+        <!-- Project 4: EduBot -->
+        <div class="project-card" data-category="bots">
+          <div class="project-header">
+            <div class="project-tag-wrap">
+              <span class="project-tag">Medical EdTech</span>
+              <span class="project-tag">Reasoning</span>
+            </div>
+            <span class="project-status">Active Deployment</span>
+          </div>
+          <h3 class="project-title">
+            <span>EduBot</span>
+          </h3>
+          <div class="project-subtitle">MediBridge Edu — Thinking-Aloud Clinical History Trainer</div>
+          <p class="project-overview">
+            An algorithmic training companion for medical students that trains diagnostic reasoning step-by-step. Features an 11-step gatekeeper: history gathering, differential diagnosis, and etiology refinement, with a strict safety gate prohibiting premature investigations.
+          </p>
+          <div class="project-actions">
+            <a href="#contact" class="btn btn-secondary btn-sm">
+              <span>Inquire / Demo</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <span style="font-size: 12px; color: var(--text-dim); font-family: var(--font-mono);">11-Step Clinical Gate</span>
+          </div>
+        </div>
+
+        <!-- Project 5: Market Intelligence Engine -->
+        <div class="project-card" data-category="data">
+          <div class="project-header">
+            <div class="project-tag-wrap">
+              <span class="project-tag">Property &amp; Real Estate</span>
+              <span class="project-tag">Automotive Analytics</span>
+            </div>
+            <span class="project-status">Production Ready</span>
+          </div>
+          <h3 class="project-title">
+            <span>Market Intelligence Engine</span>
+          </h3>
+          <div class="project-subtitle">Sri Lanka Real Estate &amp; Automotive Intelligence Platform</div>
+          <p class="project-overview">
+            A high-throughput market tracking engine monitoring real estate and vehicle transactions across Sri Lanka. Automatically cleans portal data, calculates algorithmic unit rates (Price per Perch for land/houses &amp; Price per Sq.Ft for apartments), and tracks vehicle market valuations with automated cloud schema-first database replication.
+          </p>
+          <div class="project-actions">
+            <a href="#contact" class="btn btn-secondary btn-sm">
+              <span>Inquire / Demo</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <span style="font-size: 12px; color: var(--text-dim); font-family: var(--font-mono);">Property &amp; Vehicles</span>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-inner">
-      <div>
-        <div class="footer-brand-name">Nestor<span>.AI</span></div>
-        <div class="footer-tagline">Multilingual AI physician assistant for Sri Lankan outpatient clinics. Built
-          locally, for local needs.</div>
+
+
+  <!-- Traction, Roadmap & Business Model -->
+  <section id="traction">
+    <div class="container">
+      <div class="text-center">
+        <div class="section-eyebrow">Traction</div>
+        <h2 class="section-title">Built, validated, and in clinic pilots</h2>
+        <p class="section-desc">
+          The hard engineering is done. Nestor.AI is now in clinic pilots, and our focus is converting them into paying clinics and repeatable growth.
+        </p>
       </div>
-      <div>
-        <div class="footer-col-title">Navigate</div>
-        <ul class="footer-links">
-          <li><a href="#features">Features</a></li>
-          <li><a href="#ai-model">AI Model</a></li>
-          <li><a href="#how-it-works">How it works</a></li>
-          <li><a href="#languages">Language support</a></li>
-        </ul>
+
+      <ol class="timeline">
+        <li class="timeline-item done">
+          <span class="timeline-phase">Achieved</span>
+          <h3>Product platform built</h3>
+          <p>Nestor.AI, Nestor EMR and CareGo built in-house; EduBot in active deployment.</p>
+        </li>
+        <li class="timeline-item done">
+          <span class="timeline-phase">Achieved</span>
+          <h3>Trilingual AI core</h3>
+          <p>Ambient Sinhala / Tamil / English capture with structured SOAP output and clinical safety checks.</p>
+        </li>
+        <li class="timeline-item done">
+          <span class="timeline-phase">Achieved</span>
+          <h3>Clinical validation</h3>
+          <p>Workflows validated with practicing physicians; 65% reduction in documentation time.</p>
+        </li>
+        <li class="timeline-item now">
+          <span class="timeline-phase">In progress</span>
+          <h3>Nestor.AI clinic pilots</h3>
+          <p>Piloting with outpatient practices to measure time saved in real clinics.</p>
+        </li>
+      </ol>
+
+    </div>
+  </section>
+
+  <!-- Co-Founders & Leadership -->
+  <section id="founders" style="border-top: 1px solid var(--border-subtle);">
+    <div class="container">
+      <div class="text-center">
+        <div class="section-eyebrow">Founding Team</div>
+        <h2 class="section-title">Clinician + engineer, building for their own healthcare system</h2>
+        <p class="section-desc">
+          Healthcare AI fails when it's built without clinicians or without serious engineering. Our founding team has both — one co-founder sees patients, the other ships production systems.
+        </p>
       </div>
-      <div>
-        <div class="footer-col-title">Project</div>
-        <ul class="footer-links">
-          <li><a href="#team">The team</a></li>
-          <li><a href="#paper">Research</a></li>
-          <li><a href="#contact">Book a Demo</a></li>
-        </ul>
+
+      <div class="founders-grid">
+        <!-- Co-Founder 1: Dr. Helika Illangakoon -->
+        <div class="founder-card">
+          <div class="founder-header">
+            <div class="founder-avatar" style="color: var(--aurora-emerald); border-color: rgba(16, 185, 129, 0.35);">
+              HI
+            </div>
+            <div>
+              <h3 class="founder-name">Dr. Helika Illangakoon</h3>
+              <div class="founder-title">Clinical Lead, Co-Founder &amp; AI Evangelist</div>
+            </div>
+          </div>
+          <p class="founder-bio">
+            A medical doctor with extensive frontline expertise in Sri Lankan outpatient and hospital clinical workflows. Drives clinical protocol design, medical safety requirements, trilingual diagnostic taxonomy, and real-world clinical validation across practicing physicians.
+          </p>
+          <div class="founder-tags">
+            <span class="founder-tag">Clinical Protocols</span>
+            <span class="founder-tag">Medical Safety Gates</span>
+            <span class="founder-tag">AI Healthcare Evangelism</span>
+            <span class="founder-tag">Outpatient Practice</span>
+          </div>
+        </div>
+
+        <!-- Co-Founder 2: Tharinda Embuldeniya -->
+        <div class="founder-card">
+          <div class="founder-header">
+            <div class="founder-avatar" style="color: var(--aurora-cyan); border-color: rgba(6, 182, 212, 0.35);">
+              TE
+            </div>
+            <div>
+              <h3 class="founder-name">Tharinda Embuldeniya</h3>
+              <div class="founder-title">Software Lead &amp; Co-Founder</div>
+            </div>
+          </div>
+          <p class="founder-bio">
+            Software engineer and Technical Director leading Aurora Labs' engineering stack — from high-throughput web automation and cloud infrastructure to trilingual speech processing pipelines, MCP servers, and responsive web applications.
+          </p>
+          <div class="founder-tags">
+            <span class="founder-tag">Full-Stack Engineering</span>
+            <span class="founder-tag">Multimodal AI Pipelines</span>
+            <span class="founder-tag">Cloud Infrastructure</span>
+            <span class="founder-tag">Model Context Protocol</span>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="footer-bottom">
-      <span>© 2026 Nestor.AI — Dr. Helix &amp; T. Embuldeniya · Sri Lanka</span>
-      <span>AI-generated summaries require clinician review before clinical use.</span>
+  </section>
+
+  <!-- Investor Relations -->
+  <section id="investors" class="investors-section">
+    <div class="container">
+      <div class="investor-panel">
+        <div class="investor-copy">
+          <div class="section-eyebrow">For Investors</div>
+          <h2 class="section-title">Partner with us to build the clinical AI layer for South Asia</h2>
+          <p class="section-desc">
+            We welcome conversations with angels, healthcare operators and early-stage funds seeking exposure to applied AI in high-growth, underserved healthcare markets. Reach the founders directly for our deck and a live product demo.
+          </p>
+          <div class="hero-cta-group">
+            <a href="mailto:nestorai@embuldeniya.com?subject=Investor%20Deck%20Request%20%E2%80%94%20Aurora%20Labs" class="btn btn-primary">
+              <span>Request Investor Deck</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#contact" class="btn btn-secondary" data-interest="Investment / Investor Relations">
+              <span>Book a Founder Call</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="investor-thesis">
+          <h3>Investment highlights</h3>
+          <ul>
+            <li><strong>Clear wedge.</strong> Nestor.AI delivers measurable ROI (65% less charting time) from the first clinic day.</li>
+            <li><strong>Defensible niche.</strong> Code-switched trilingual clinical AI that English-first competitors don't serve.</li>
+            <li><strong>Platform upside.</strong> Four connected products expand revenue per clinic across the patient journey.</li>
+            <li><strong>Founder-market fit.</strong> A practicing physician and a systems engineer, building for their own healthcare system.</li>
+            <li><strong>Capital efficient.</strong> Five products already built on a lean cost base, with the flagship in clinic pilots.</li>
+          </ul>
+          <div class="investor-available">
+            <span>Available on request:</span>
+            <span class="founder-tag">Pitch deck</span>
+            <span class="founder-tag">Live demo</span>
+            <span class="founder-tag">Product roadmap</span>
+            <span class="founder-tag">Technical walkthrough</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Us Section -->
+  <section class="contact-section" id="contact">
+    <div class="container">
+      <div class="text-center">
+        <div class="section-eyebrow">Connect with Us</div>
+        <h2 class="section-title">Get in Touch with Aurora Labs</h2>
+        <p class="section-desc">
+          Investors, clinics interested in a pilot, and strategic partners — reach our founding team directly.
+        </p>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Direct Contact Details -->
+        <div class="contact-info-card">
+          <div>
+            <h3 style="font-size: 20px; margin-bottom: 24px;">Contact &amp; Registered Office</h3>
+            
+            <div class="info-item">
+              <div class="info-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+              </div>
+              <div>
+                <div class="info-label">Official Email</div>
+                <a href="mailto:nestorai@embuldeniya.com" class="info-value">nestorai@embuldeniya.com</a>
+                <button class="btn btn-secondary btn-sm btn-copy" data-clipboard="nestorai@embuldeniya.com" style="margin-left: 8px; padding: 3px 8px; font-size: 11px;">Copy</button>
+                <div class="info-subtext">Direct line to executive &amp; technical leadership</div>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <div class="info-icon" style="color: var(--aurora-emerald); background: rgba(16, 185, 129, 0.1); border-color: rgba(16, 185, 129, 0.2);">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/>
+                </svg>
+              </div>
+              <div>
+                <div class="info-label">WhatsApp</div>
+                <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                  <a href="https://wa.me/94740264010" target="_blank" rel="noopener" class="info-value">+94 74 026 4010</a>
+                  <button class="btn btn-secondary btn-sm btn-copy" data-clipboard="+94 74 026 4010" style="padding: 3px 8px; font-size: 11px;">Copy</button>
+                </div>
+                <div class="info-subtext">Direct chat with our team on WhatsApp</div>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <div class="info-icon" style="color: var(--aurora-purple); background: rgba(129, 140, 248, 0.1); border-color: rgba(129, 140, 248, 0.2);">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                  <circle cx="12" cy="10" r="3"/>
+                </svg>
+              </div>
+              <div>
+                <div class="info-label">Registered Office Address</div>
+                <div class="info-value" style="font-size: 15px;">290 Highlevel Road, Nugegoda 10250</div>
+                <div class="info-subtext">Western Province, Sri Lanka</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-direct-actions">
+            <a href="https://wa.me/94740264010?text=Hello%20Aurora%20Labs%20team,%20I%20would%20like%20to%20inquire%20about%20your%20work." target="_blank" rel="noopener" class="btn btn-secondary" style="border-color: rgba(16, 185, 129, 0.4); color: #34d399;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/>
+              </svg>
+              <span>Chat Directly on WhatsApp</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="contact-form-wrap">
+          <h3 style="font-size: 20px; margin-bottom: 8px;">Send an Inquiry</h3>
+          <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 24px;">
+            Fill out the form below to initiate an email thread or WhatsApp chat with the co-founders.
+          </p>
+
+          <form id="contactForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="contactName">Your Name *</label>
+                <input type="text" id="contactName" class="form-control" placeholder="e.g. Dr. Kaveesh Perera" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="contactEmail">Email or Phone *</label>
+                <input type="text" id="contactEmail" class="form-control" placeholder="e.g. kaveesh@example.com" required>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="contactOrg">Organization</label>
+                <input type="text" id="contactOrg" class="form-control" placeholder="e.g. Fund, clinic or company">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="contactInterest">Primary Area of Interest</label>
+                <select id="contactInterest" class="form-control">
+                  <option value="Investment / Investor Relations">Investment / Investor Relations</option>
+                  <option value="Nestor.AI Physician Assistant">Nestor.AI Physician Assistant</option>
+                  <option value="Nestor EMR Platform">Nestor EMR Platform</option>
+                  <option value="CareGo (Patient Bot)">CareGo (Patient Bot)</option>
+                  <option value="EduBot Medical Trainer">EduBot (MediBridge Edu)</option>
+                  <option value="Market Intelligence Platform">Market Intelligence Platform</option>
+                  <option value="General Startup Inquiry">General Partnership / Other</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="contactMessage">Your Message *</label>
+              <textarea id="contactMessage" class="form-control" placeholder="Tell us about your interest — investment, a clinic pilot, or a partnership..." required></textarea>
+            </div>
+
+            <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+              <button type="button" id="btnSendEmail" class="btn btn-primary">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+                <span>Send via Email</span>
+              </button>
+              <button type="button" id="btnSendWhatsApp" class="btn btn-secondary">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/>
+                </svg>
+                <span>Send via WhatsApp</span>
+              </button>
+            </div>
+
+            <div id="formAlert" class="form-alert"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-col-brand">
+          <div class="nav-brand" style="margin-bottom: 12px;">
+            <div class="brand-icon">
+              <img src="assets/images/logo-icon-192.png" alt="Aurora Labs Logo" width="38" height="38" class="brand-logo-img">
+            </div>
+            <span class="brand-name">Aurora Labs</span>
+          </div>
+          <p>
+            Physician-led health AI company building trilingual clinical AI, clinic software and patient engagement tools for South Asian healthcare.
+          </p>
+        </div>
+
+        <div class="footer-links-group">
+          <div class="footer-col">
+            <h4>Products</h4>
+            <ul>
+              <li><a href="/nestorai">Nestor.AI</a></li>
+              <li><a href="#projects">Nestor EMR</a></li>
+              <li><a href="#projects">CareGo (Patient Bot)</a></li>
+              <li><a href="#projects">EduBot</a></li>
+              <li><a href="#projects">Market Intelligence</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="#opportunity">Opportunity</a></li>
+              <li><a href="#platform">Platform</a></li>
+              <li><a href="#traction">Traction</a></li>
+              <li><a href="#founders">Team</a></li>
+              <li><a href="#investors">Investors</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Registered Office</h4>
+            <p style="font-size: 14px; color: var(--text-muted); line-height: 1.6; max-width: 220px;">
+              290 Highlevel Road,<br>
+              Nugegoda 10250,<br>
+              Western Province,<br>
+              Sri Lanka
+            </p>
+            <p style="font-size: 13px; color: var(--aurora-cyan); margin-top: 8px;">
+              WhatsApp: +94 74 026 4010
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          &copy; 2026 <strong>Aurora Labs (Pvt) Ltd</strong> (company registration in progress). All rights reserved.
+        </div>
+        <div class="footer-legal-tag">
+          Registered Address: 290 Highlevel Road, Nugegoda 10250, Sri Lanka
+        </div>
+      </div>
     </div>
   </footer>
 
-</body>
+  <!-- Toast Notification Container -->
+  <div id="toastNotice" class="toast-notice"></div>
 
+  <!-- Main JavaScript File -->
+  <script src="app.js"></script>
+</body>
 </html>

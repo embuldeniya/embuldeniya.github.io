@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://embuldeniya.github.io/sitemap.xml
